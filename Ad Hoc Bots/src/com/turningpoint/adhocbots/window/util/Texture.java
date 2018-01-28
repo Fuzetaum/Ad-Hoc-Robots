@@ -1,6 +1,8 @@
 package com.turningpoint.adhocbots.window.util;
 
 public abstract class Texture {
+	//Special definition - font file location
+	public static final String PATH_FONT = "resources/font.ttf";
 	//Buttons
 	public static final String TEXTURE_BUTTON_START = "resources/button/button-start.png";
 	public static final String TEXTURE_BUTTON_EXIT = "resources/button/button-exit.png";
@@ -20,6 +22,7 @@ public abstract class Texture {
 	public static final String TEXTURE_FRAME = "resources/ui/frame.png";
 	public static final String TEXTURE_FRAME_BUILDING = "resources/ui/frame-building.png";
 	public static final String TEXTURE_FRAME_ROBOT = "resources/ui/frame-robot.png";
+	public static final String TEXTURE_FRAME_RESOURCES = "resources/ui/frame-resources.png";
 	//Wallpapers
 	public static final String TEXTURE_WALLPAPER_MAIN_MENU = "resources/wallpaper/main-splash.png";
 	public static final String TEXTURE_WALLPAPER_INSTRUCTION_1 = "resources/wallpaper/instruction-1.png";

@@ -30,6 +30,7 @@ import java.util.Random;
 import com.turningpoint.adhocbots.map.Building;
 import com.turningpoint.adhocbots.map.Map;
 import com.turningpoint.adhocbots.map.Robot;
+import com.turningpoint.adhocbots.map.UserController;
 import com.turningpoint.adhocbots.window.util.ImageLoader;
 import com.turningpoint.adhocbots.window.util.Texture;
 
@@ -71,6 +72,8 @@ public class RenderGameMap {
 		for(int i=1; i<=30; i++)
 			Map.placeRandomTileElement();
 		RenderGameMap.isMapGenerated = true;
+		//Initialize player's resource stockpile
+		UserController.initializeResources();
 	}
 	
 	private static void drawViewportTiles() {

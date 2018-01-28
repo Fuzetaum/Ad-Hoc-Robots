@@ -15,18 +15,20 @@ import java.awt.image.BufferedImage;
 
 import com.turningpoint.adhocbots.map.Building;
 import com.turningpoint.adhocbots.map.Robot;
+import com.turningpoint.adhocbots.map.UserController;
 import com.turningpoint.adhocbots.window.util.ImageLoader;
 import com.turningpoint.adhocbots.window.util.Texture;
 
 public class RenderGameUI {
 	//Textures
-	private static int frameTexture,buildingTexture;
+	private static int frameTexture,resourceTexture;
 	//Flags to control listeners' setup
 	private static boolean isMouseCallbackSet = false;
 	private static boolean isBuildingSelected = false;
 	private static Building selectedBuilding;
 	private static boolean isRobotSelected = false;
 	private static Robot selectedRobot;
+	private static Font textDrawer=null;
 	
 	public static boolean isRobotSelected() {return RenderGameUI.isRobotSelected;}
 	public static boolean isGivenRobotSelected(Robot robot) {
@@ -58,6 +60,29 @@ public class RenderGameUI {
 			glTexCoord2f(1f, 0f);
 			glVertex2f(WindowSettings.getWindowWidthAsFloat(), 0f);
 		glEnd();
+		//Draw the resource stockpile frame
+		image = ImageLoader.loadImage(Texture.TEXTURE_FRAME_RESOURCES);
+		RenderGameUI.resourceTexture = ImageLoader.loadTexture(image);
+		glBegin(GL_QUADS);
+			glTexCoord2f(0f, 0f);
+			glVertex2f(0f, 0f);
+			glTexCoord2f(0f, 1f);
+			glVertex2f(0f, WindowSettings.getWindowHeightAsFloat());
+			glTexCoord2f(1f, 1f);
+			glVertex2f(WindowSettings.getWindowWidthAsFloat(), WindowSettings.getWindowHeightAsFloat());
+			glTexCoord2f(1f, 0f);
+			glVertex2f(WindowSettings.getWindowWidthAsFloat(), 0f);
+		glEnd();
+		//Draw the resources amount
+		try {
+			if(RenderGameUI.textDrawer == null) RenderGameUI.textDrawer = new Font(Texture.PATH_FONT, 24);
+			String moneyAmount = UserController.getMoney().toString();
+			RenderGameUI.textDrawer.drawText(moneyAmount, 860, 19);
+			String steelAmount = UserController.getSteel().toString();
+			RenderGameUI.textDrawer.drawText(steelAmount, 860, 78);
+			String electronicsAmount = UserController.getElectronics().toString();
+			RenderGameUI.textDrawer.drawText(electronicsAmount, 860, 136);
+		} catch (Exception e) {e.printStackTrace();}
 	}
 	
 	public static void drawBuildingInfo(Building building) {

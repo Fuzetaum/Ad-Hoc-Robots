@@ -27,6 +27,7 @@ import java.awt.image.BufferedImage;
 import java.util.Iterator;
 import java.util.Random;
 
+import com.turningpoint.adhocbots.engine.render.window.WindowConfigurations;
 import com.turningpoint.adhocbots.map.Building;
 import com.turningpoint.adhocbots.map.Map;
 import com.turningpoint.adhocbots.map.Robot;
@@ -81,7 +82,7 @@ public class RenderGameMap {
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity(); // Resets any previous projection matrices
 		//redefines the (1,1) OpenGL native scale to (width,height)
-		glOrtho(0, WindowSettings.getWindowWidth(), WindowSettings.getWindowHeight(), 0, 1, -1);
+		glOrtho(0, WindowConfigurations.getWindowWidth(), WindowConfigurations.getWindowHeight(), 0, 1, -1);
 		BufferedImage image = ImageLoader.loadImage(Texture.TEXTURE_GROUND_GRASS);
 		RenderGameMap.tileGroundGrassTexture = ImageLoader.loadTexture(image);
 		glColor4f(1f, 1f, 1f, 1f);
@@ -119,7 +120,7 @@ public class RenderGameMap {
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity(); // Resets any previous projection matrices
 		//redefines the (1,1) OpenGL native scale to (width,height)
-		glOrtho(0, WindowSettings.getWindowWidth(), WindowSettings.getWindowHeight(), 0, 1, -1);
+		glOrtho(0, WindowConfigurations.getWindowWidth(), WindowConfigurations.getWindowHeight(), 0, 1, -1);
 		BufferedImage image;
 		//Cycle through each coordinate to draw buildings
 		//Drawing backwards makes "front" building to be drawed above "back" ones
@@ -175,7 +176,7 @@ public class RenderGameMap {
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity(); // Resets any previous projection matrices
 		//redefines the (1,1) OpenGL native scale to (width,height)
-		glOrtho(0, WindowSettings.getWindowWidth(), WindowSettings.getWindowHeight(), 0, 1, -1);
+		glOrtho(0, WindowConfigurations.getWindowWidth(), WindowConfigurations.getWindowHeight(), 0, 1, -1);
 		BufferedImage image;
 		Iterator<Robot> robotList = Map.getRobotListIterator();
 		Robot robot;

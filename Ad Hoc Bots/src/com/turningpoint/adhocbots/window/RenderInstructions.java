@@ -18,6 +18,7 @@ import static org.lwjgl.opengl.GL11.glVertex2f;
 
 import java.awt.image.BufferedImage;
 
+import com.turningpoint.adhocbots.engine.render.window.WindowConfigurations;
 import com.turningpoint.adhocbots.window.util.ImageLoader;
 import com.turningpoint.adhocbots.window.util.Texture;
 
@@ -25,19 +26,19 @@ public class RenderInstructions {
 	private static int wallpaperTexture, buttonPreviousTexture, buttonExitTexture, buttonSkipTexture, buttonNextTexture;
 	private static int exampleRobotTexture, exampleCommCenterTexture, exampleMoneyServerTexture;
 	//Buttons location variables
-	private static float buttonUpperEnd = ((WindowSettings.getWindowHeightAsFloat()/5f)*4)+30f;
+	private static float buttonUpperEnd = ((WindowConfigurations.getWindowHeightAsFloat()/5f)*4)+30f;
 	private static float buttonLowerEnd = RenderInstructions.buttonUpperEnd+100f;
 	private static float buttonPreviousLeftEnd = 30f;
 	private static float buttonPreviousRightEnd = RenderInstructions.buttonPreviousLeftEnd
-			+ ((WindowSettings.getWindowWidthAsFloat()-120f)/4f);
+			+ ((WindowConfigurations.getWindowWidthAsFloat()-120f)/4f);
 	private static float buttonExitLeftEnd = RenderInstructions.buttonPreviousRightEnd + 20f;
 	private static float buttonExitRightEnd = RenderInstructions.buttonExitLeftEnd
-			+ ((WindowSettings.getWindowWidthAsFloat()-120f)/4f);
+			+ ((WindowConfigurations.getWindowWidthAsFloat()-120f)/4f);
 	private static float buttonSkipLeftEnd = RenderInstructions.buttonExitRightEnd + 20f;
 	private static float buttonSkipRightEnd = RenderInstructions.buttonSkipLeftEnd
-			+ ((WindowSettings.getWindowWidthAsFloat()-120f)/4f);
+			+ ((WindowConfigurations.getWindowWidthAsFloat()-120f)/4f);
 	private static float buttonNextLeftEnd = RenderInstructions.buttonSkipRightEnd + 20f;
-	private static float buttonNextRightEnd = WindowSettings.getWindowWidthAsFloat()-30f;
+	private static float buttonNextRightEnd = WindowConfigurations.getWindowWidthAsFloat()-30f;
 	//Entity location variables
 	//Page 1 entities
 	private static float entityRobotUpperEnd = 240f;
@@ -72,7 +73,7 @@ public class RenderInstructions {
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity(); // Resets any previous projection matrices
 		//redefines the (1,1) OpenGL native scale to (width,height)
-		glOrtho(0, WindowSettings.getWindowWidth(), WindowSettings.getWindowHeight(), 0, 1, -1);
+		glOrtho(0, WindowConfigurations.getWindowWidth(), WindowConfigurations.getWindowHeight(), 0, 1, -1);
 		BufferedImage image;
 		//Check which instruction page should be printed
 		switch(RenderInstructions.instructionPage) {
@@ -94,11 +95,11 @@ public class RenderInstructions {
 			glTexCoord2f(0f, 0f);
 			glVertex2f(0f, 0f);
 			glTexCoord2f(0f, 1f);
-			glVertex2f(0f, WindowSettings.getWindowHeightAsFloat());
+			glVertex2f(0f, WindowConfigurations.getWindowHeightAsFloat());
 			glTexCoord2f(1f, 1f);
-			glVertex2f(WindowSettings.getWindowWidthAsFloat(), WindowSettings.getWindowHeightAsFloat());
+			glVertex2f(WindowConfigurations.getWindowWidthAsFloat(), WindowConfigurations.getWindowHeightAsFloat());
 			glTexCoord2f(1f, 0f);
-			glVertex2f(WindowSettings.getWindowWidthAsFloat(), 0f);
+			glVertex2f(WindowConfigurations.getWindowWidthAsFloat(), 0f);
 		glEnd();
 	}
 
@@ -107,7 +108,7 @@ public class RenderInstructions {
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity(); // Resets any previous projection matrices
 		//redefines the (1,1) OpenGL native scale to (width,height)
-		glOrtho(0, WindowSettings.getWindowWidth(), WindowSettings.getWindowHeight(), 0, 1, -1);
+		glOrtho(0, WindowConfigurations.getWindowWidth(), WindowConfigurations.getWindowHeight(), 0, 1, -1);
 		BufferedImage image = ImageLoader.loadImage(Texture.TEXTURE_BUTTON_PREVIOUS);
 		RenderInstructions.buttonPreviousTexture = ImageLoader.loadTexture(image);
 		glColor4f(1f, 1f, 1f, 1f);
@@ -168,7 +169,7 @@ public class RenderInstructions {
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity(); // Resets any previous projection matrices
 		//redefines the (1,1) OpenGL native scale to (width,height)
-		glOrtho(0, WindowSettings.getWindowWidth(), WindowSettings.getWindowHeight(), 0, 1, -1);
+		glOrtho(0, WindowConfigurations.getWindowWidth(), WindowConfigurations.getWindowHeight(), 0, 1, -1);
 		BufferedImage image;
 		//Check which entities should be printed, according to the instruction page shown
 		switch(RenderInstructions.instructionPage) {
@@ -301,7 +302,7 @@ public class RenderInstructions {
 			 		//Check click inside Skip button
 			 		else if(RenderInstructions.mouseX >= RenderInstructions.buttonSkipLeftEnd
 			 				&& RenderInstructions.mouseX <= RenderInstructions.buttonSkipRightEnd) {
-			 			WindowSettings.setScreenMode(WindowSettings.SCREENMODE_INGAME);
+						WindowSettings.setScreenMode(WindowSettings.SCREENMODE_INGAME);
 			 			glfwFreeCallbacks(gameWindow);
 			 			RenderInstructions.isMouseCallbackSet = false;
 			 		}
@@ -309,7 +310,7 @@ public class RenderInstructions {
 			 		else if(RenderInstructions.mouseX >= RenderInstructions.buttonNextLeftEnd
 			 				&& RenderInstructions.mouseX <= RenderInstructions.buttonNextRightEnd) {
 			 			if(RenderInstructions.instructionPage == 3) {
-				 			WindowSettings.setScreenMode(WindowSettings.SCREENMODE_INGAME);
+							WindowSettings.setScreenMode(WindowSettings.SCREENMODE_INGAME);
 				 			glfwFreeCallbacks(gameWindow);
 				 			RenderInstructions.isMouseCallbackSet = false;
 				 		}

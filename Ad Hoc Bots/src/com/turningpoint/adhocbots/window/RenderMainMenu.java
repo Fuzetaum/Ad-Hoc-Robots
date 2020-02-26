@@ -19,16 +19,17 @@ import static org.lwjgl.opengl.GL11.glVertex2f;
 
 import java.awt.image.BufferedImage;
 
+import com.turningpoint.adhocbots.engine.render.window.WindowConfigurations;
 import com.turningpoint.adhocbots.window.util.ImageLoader;
 import com.turningpoint.adhocbots.window.util.Texture;
 
 public class RenderMainMenu {
 	private static int wallpaperTexture, buttonStartTexture, buttonExitTexture;
-	private static float buttonUpperEnd = (WindowSettings.getWindowHeightAsFloat()/5f)*4;
+	private static float buttonUpperEnd = (WindowConfigurations.getWindowHeightAsFloat()/5f)*4;
 	private static float buttonLowerEnd = RenderMainMenu.buttonUpperEnd+100;
-	private static float buttonStartLeftEnd = (WindowSettings.getWindowWidthAsFloat()/5f);
+	private static float buttonStartLeftEnd = (WindowConfigurations.getWindowWidthAsFloat()/5f);
 	private static float buttonStartRightEnd = RenderMainMenu.buttonStartLeftEnd+200;
-	private static float buttonExitLeftEnd = (WindowSettings.getWindowWidthAsFloat()/5f)*3;
+	private static float buttonExitLeftEnd = (WindowConfigurations.getWindowWidthAsFloat()/5f)*3;
 	private static float buttonExitRightEnd = RenderMainMenu.buttonExitLeftEnd+200;
 	private static float mouseX, mouseY;
 	private static boolean isMouseCallbackSet=false;
@@ -38,7 +39,7 @@ public class RenderMainMenu {
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity(); // Resets any previous projection matrices
 		//redefines the (1,1) OpenGL native scale to (width,height)
-		glOrtho(0, WindowSettings.getWindowWidth(), WindowSettings.getWindowHeight(), 0, 1, -1);
+		glOrtho(0, WindowConfigurations.getWindowWidth(), WindowConfigurations.getWindowHeight(), 0, 1, -1);
 		BufferedImage image = ImageLoader.loadImage(Texture.TEXTURE_WALLPAPER_MAIN_MENU);
 		RenderMainMenu.wallpaperTexture = ImageLoader.loadTexture(image);
 		glColor4f(1f, 1f, 1f, 1f);
@@ -46,11 +47,11 @@ public class RenderMainMenu {
 			glTexCoord2f(0f, 0f);
 			glVertex2f(0f, 0f);
 			glTexCoord2f(0f, 1f);
-			glVertex2f(0f, WindowSettings.getWindowHeightAsFloat());
+			glVertex2f(0f, WindowConfigurations.getWindowHeightAsFloat());
 			glTexCoord2f(1f, 1f);
-			glVertex2f(WindowSettings.getWindowWidthAsFloat(), WindowSettings.getWindowHeightAsFloat());
+			glVertex2f(WindowConfigurations.getWindowWidthAsFloat(), WindowConfigurations.getWindowHeightAsFloat());
 			glTexCoord2f(1f, 0f);
-			glVertex2f(WindowSettings.getWindowWidthAsFloat(), 0f);
+			glVertex2f(WindowConfigurations.getWindowWidthAsFloat(), 0f);
 		glEnd();
 	}
 	
@@ -59,7 +60,7 @@ public class RenderMainMenu {
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity(); // Resets any previous projection matrices
 		//redefines the (1,1) OpenGL native scale to (width,height)
-		glOrtho(0, WindowSettings.getWindowWidth(), WindowSettings.getWindowHeight(), 0, 1, -1);
+		glOrtho(0, WindowConfigurations.getWindowWidth(), WindowConfigurations.getWindowHeight(), 0, 1, -1);
 		BufferedImage image = ImageLoader.loadImage(Texture.TEXTURE_BUTTON_START);
 		RenderMainMenu.buttonStartTexture = ImageLoader.loadTexture(image);
 		glColor4f(1f, 1f, 1f, 1f);

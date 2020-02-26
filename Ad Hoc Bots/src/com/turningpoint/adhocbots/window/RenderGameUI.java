@@ -13,6 +13,7 @@ import static org.lwjgl.opengl.GL11.glVertex2f;
 
 import java.awt.image.BufferedImage;
 
+import com.turningpoint.adhocbots.engine.render.window.WindowConfigurations;
 import com.turningpoint.adhocbots.map.Building;
 import com.turningpoint.adhocbots.map.Robot;
 import com.turningpoint.adhocbots.map.UserController;
@@ -38,11 +39,11 @@ public class RenderGameUI {
 	}
 	
 	private static void drawFrame() {
-		//sets up the screen camera view
+		// sets up the screen camera view
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity(); // Resets any previous projection matrices
-		//redefines the (1,1) OpenGL native scale to (width,height)
-		glOrtho(0, WindowSettings.getWindowWidth(), WindowSettings.getWindowHeight(), 0, 1, -1);
+		// redefines the (1,1) OpenGL native scale to (width,height)
+		glOrtho(0, WindowConfigurations.getWindowWidth(), WindowConfigurations.getWindowHeight(), 0, 1, -1);
 		BufferedImage image;
 		//Choose the proper frame to draw
 		if(RenderGameUI.isBuildingSelected) image = ImageLoader.loadImage(Texture.TEXTURE_FRAME_BUILDING);
@@ -54,11 +55,11 @@ public class RenderGameUI {
 			glTexCoord2f(0f, 0f);
 			glVertex2f(0f, 0f);
 			glTexCoord2f(0f, 1f);
-			glVertex2f(0f, WindowSettings.getWindowHeightAsFloat());
+			glVertex2f(0f, WindowConfigurations.getWindowHeightAsFloat());
 			glTexCoord2f(1f, 1f);
-			glVertex2f(WindowSettings.getWindowWidthAsFloat(), WindowSettings.getWindowHeightAsFloat());
+			glVertex2f(WindowConfigurations.getWindowWidthAsFloat(), WindowConfigurations.getWindowHeightAsFloat());
 			glTexCoord2f(1f, 0f);
-			glVertex2f(WindowSettings.getWindowWidthAsFloat(), 0f);
+			glVertex2f(WindowConfigurations.getWindowWidthAsFloat(), 0f);
 		glEnd();
 		//Draw the resource stockpile frame
 		image = ImageLoader.loadImage(Texture.TEXTURE_FRAME_RESOURCES);
@@ -67,11 +68,11 @@ public class RenderGameUI {
 			glTexCoord2f(0f, 0f);
 			glVertex2f(0f, 0f);
 			glTexCoord2f(0f, 1f);
-			glVertex2f(0f, WindowSettings.getWindowHeightAsFloat());
+			glVertex2f(0f, WindowConfigurations.getWindowHeightAsFloat());
 			glTexCoord2f(1f, 1f);
-			glVertex2f(WindowSettings.getWindowWidthAsFloat(), WindowSettings.getWindowHeightAsFloat());
+			glVertex2f(WindowConfigurations.getWindowWidthAsFloat(), WindowConfigurations.getWindowHeightAsFloat());
 			glTexCoord2f(1f, 0f);
-			glVertex2f(WindowSettings.getWindowWidthAsFloat(), 0f);
+			glVertex2f(WindowConfigurations.getWindowWidthAsFloat(), 0f);
 		glEnd();
 		//Draw the resources amount
 		try {
@@ -94,7 +95,7 @@ public class RenderGameUI {
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity(); // Resets any previous projection matrices
 		//redefines the (1,1) OpenGL native scale to (width,height)
-		glOrtho(0, WindowSettings.getWindowWidth(), WindowSettings.getWindowHeight(), 0, 1, -1);
+		glOrtho(0, WindowConfigurations.getWindowWidth(), WindowConfigurations.getWindowHeight(), 0, 1, -1);
 		BufferedImage image;
 		switch(building.getBuildingType()) {
 		//BUILDING_RESOURCE_COMMAND_CENTER

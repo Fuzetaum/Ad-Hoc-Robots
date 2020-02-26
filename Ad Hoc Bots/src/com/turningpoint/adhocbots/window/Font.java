@@ -17,8 +17,7 @@ public class Font {
         put(0, "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
         put(1, "abcdefghijklmnopqrstuvwxyz");
         put(2, "0123456789");
-        put(3, "ƒ÷‹‰ˆ¸ﬂ");
-        put(4, " $+-*/=%\"'#@&_(),.;:?!\\|<>[]ß`^~");
+        put(3, " $+-*/=%\"'#@&_(),.;:?!\\|<>[]`^~");
     }};
    
    //Variables

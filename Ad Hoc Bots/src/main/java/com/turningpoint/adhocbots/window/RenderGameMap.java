@@ -83,7 +83,7 @@ public class RenderGameMap {
 		glLoadIdentity(); // Resets any previous projection matrices
 		//redefines the (1,1) OpenGL native scale to (width,height)
 		glOrtho(0, WindowConfigurations.getWindowWidth(), WindowConfigurations.getWindowHeight(), 0, 1, -1);
-		BufferedImage image = ImageLoader.loadImage(Texture.TEXTURE_GROUND_GRASS);
+		BufferedImage image = ImageLoader.loadImage(Texture.GROUND_GRASS.getPath());
 		RenderGameMap.tileGroundGrassTexture = ImageLoader.loadTexture(image);
 		glColor4f(1f, 1f, 1f, 1f);
 		//Cycle through the tiles by y-axis
@@ -131,25 +131,25 @@ public class RenderGameMap {
 				//Command Center
 				//case (Building.BUILDING_RESOURCE_COMMAND_CENTER):
 				case 0:
-					image = ImageLoader.loadImage(Texture.TEXTURE_COMMAND_CENTER);
+					image = ImageLoader.loadImage(Texture.COMMAND_CENTER.getPath());
 					RenderGameMap.commandCenterTexture = ImageLoader.loadTexture(image);
 					break;
 				//Money Server
 				//case (Building.BUILDING_RESOURCE_MONEY):
 				case 1:
-					image = ImageLoader.loadImage(Texture.TEXTURE_MONEY_SERVER);
+					image = ImageLoader.loadImage(Texture.MONEY_SERVER.getPath());
 					RenderGameMap.moneyServerTexture = ImageLoader.loadTexture(image);
 					break;
 				//Wrecked Building
 				//case (Building.BUILDING_RESOURCE_STEEL):
 				case 2:
-					image = ImageLoader.loadImage(Texture.TEXTURE_WRECKED_BUILDING);
+					image = ImageLoader.loadImage(Texture.WRECKED_BUILDING.getPath());
 					RenderGameMap.WreckedBuildingTexture = ImageLoader.loadTexture(image);
 					break;
 				//Hardware Factory
 				//case (Building.BUILDING_RESOURCE_ELECTRONICS):
 				case 3:
-					image = ImageLoader.loadImage(Texture.TEXTURE_HARDWARE_FACTORY);
+					image = ImageLoader.loadImage(Texture.HARDWARE_FACTORY.getPath());
 					RenderGameMap.hardwareFactoryTexture = ImageLoader.loadTexture(image);
 					break;
 			}
@@ -182,8 +182,8 @@ public class RenderGameMap {
 		Robot robot;
 		while(robotList.hasNext()) {
 			robot = robotList.next();
-			if(RenderGameUI.isGivenRobotSelected(robot)) image = ImageLoader.loadImage(Texture.TEXTURE_ROBOT_SELECTED);
-			else image = ImageLoader.loadImage(Texture.TEXTURE_ROBOT);
+			if(RenderGameUI.isGivenRobotSelected(robot)) image = ImageLoader.loadImage(Texture.ROBOT_SELECTED.getPath());
+			else image = ImageLoader.loadImage(Texture.ROBOT.getPath());
 			RenderGameMap.robotTexture = ImageLoader.loadTexture(image);
 			robot.walk();
 			glColor4f(1f, 1f, 1f, 1f);

@@ -11,6 +11,7 @@ import java.util.Map;
 import static org.lwjgl.opengl.GL11.*;
 
 public class Font {
+    private static final String FONT_PATH = "src/main/resources/font.ttf";
    
    //Constants
    private final Map<Integer,String> CHARS = new HashMap<Integer,String>() {{
@@ -49,8 +50,8 @@ public class Font {
     }
     
     //Constructors
-    public Font(String path, float size) throws Exception {
-        this.font = java.awt.Font.createFont(java.awt.Font.TRUETYPE_FONT, new File(path)).deriveFont(size);
+    public Font(float size) throws Exception {
+        this.font = java.awt.Font.createFont(java.awt.Font.TRUETYPE_FONT, new File(FONT_PATH)).deriveFont(size);
         
         //Generate buffered image
         GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();

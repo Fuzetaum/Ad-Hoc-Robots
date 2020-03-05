@@ -28,7 +28,7 @@ import org.lwjgl.opengl.GL12;
 public class ImageLoader {
 	private static final int BYTES_PER_PIXEL = 4;
 	
-	public static int loadTexture(BufferedImage image){
+	public static int loadTexture(BufferedImage image) {
 		byte R, G, B, A;
 		if(image == null) throw new IllegalArgumentException("Image is null");
         int[] pixels = new int[image.getWidth() * image.getHeight()];

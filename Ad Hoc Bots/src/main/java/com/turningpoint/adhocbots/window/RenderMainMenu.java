@@ -19,6 +19,7 @@ import static org.lwjgl.opengl.GL11.glVertex2f;
 
 import java.awt.image.BufferedImage;
 
+import com.turningpoint.adhocbots.engine.render.model.Sprite;
 import com.turningpoint.adhocbots.engine.render.window.WindowConfigurations;
 import com.turningpoint.adhocbots.window.util.ImageLoader;
 import com.turningpoint.adhocbots.window.util.Texture;
@@ -26,11 +27,20 @@ import com.turningpoint.adhocbots.window.util.Texture;
 public class RenderMainMenu {
 	private static int wallpaperTexture, buttonStartTexture, buttonExitTexture;
 	private static float buttonUpperEnd = (WindowConfigurations.getWindowHeightAsFloat()/5f)*4;
-	private static float buttonLowerEnd = RenderMainMenu.buttonUpperEnd+100;
 	private static float buttonStartLeftEnd = (WindowConfigurations.getWindowWidthAsFloat()/5f);
-	private static float buttonStartRightEnd = RenderMainMenu.buttonStartLeftEnd+200;
-	private static float buttonExitLeftEnd = (WindowConfigurations.getWindowWidthAsFloat()/5f)*3;
-	private static float buttonExitRightEnd = RenderMainMenu.buttonExitLeftEnd+200;
+	private static float buttonExitLeftEnd = buttonStartLeftEnd*3;
+	private static Sprite buttonStart = new Sprite(
+			RenderMainMenu.buttonStartLeftEnd,
+			RenderMainMenu.buttonStartLeftEnd+200,
+			RenderMainMenu.buttonUpperEnd,
+			RenderMainMenu.buttonUpperEnd+100,
+			Textures.BUTTON_START.getName());
+	private static Sprite buttonExit = new Sprite(
+			RenderMainMenu.buttonExitLeftEnd,
+			RenderMainMenu.buttonExitLeftEnd+200,
+			RenderMainMenu.buttonUpperEnd,
+			RenderMainMenu.buttonUpperEnd+100,
+			Textures.BUTTON_EXIT.getName());
 	private static float mouseX, mouseY;
 	private static boolean isMouseCallbackSet=false;
 	
@@ -40,7 +50,7 @@ public class RenderMainMenu {
 		glLoadIdentity(); // Resets any previous projection matrices
 		//redefines the (1,1) OpenGL native scale to (width,height)
 		glOrtho(0, WindowConfigurations.getWindowWidth(), WindowConfigurations.getWindowHeight(), 0, 1, -1);
-		BufferedImage image = ImageLoader.loadImage(Texture.TEXTURE_WALLPAPER_MAIN_MENU);
+		BufferedImage image = ImageLoader.loadImage(Texture.WALLPAPER_MAIN_MENU.getPath());
 		RenderMainMenu.wallpaperTexture = ImageLoader.loadTexture(image);
 		glColor4f(1f, 1f, 1f, 1f);
 		glBegin(GL_QUADS);
@@ -61,32 +71,32 @@ public class RenderMainMenu {
 		glLoadIdentity(); // Resets any previous projection matrices
 		//redefines the (1,1) OpenGL native scale to (width,height)
 		glOrtho(0, WindowConfigurations.getWindowWidth(), WindowConfigurations.getWindowHeight(), 0, 1, -1);
-		BufferedImage image = ImageLoader.loadImage(Texture.TEXTURE_BUTTON_START);
+		BufferedImage image = ImageLoader.loadImage(Texture.BUTTON_START.getPath());
 		RenderMainMenu.buttonStartTexture = ImageLoader.loadTexture(image);
 		glColor4f(1f, 1f, 1f, 1f);
 		//Draw Start button
 		glBegin(GL_QUADS);
 			glTexCoord2f(0f, 0f);
-			glVertex2f(RenderMainMenu.buttonStartLeftEnd, RenderMainMenu.buttonUpperEnd);
+			glVertex2f(buttonStart.getLeftCoordinate(), buttonStart.getTopCoordinate());
 			glTexCoord2f(0f, 1f);
-			glVertex2f(RenderMainMenu.buttonStartLeftEnd, RenderMainMenu.buttonLowerEnd);
+			glVertex2f(buttonStart.getLeftCoordinate(), buttonStart.getBottomCoordinate());
 			glTexCoord2f(1f, 1f);
-			glVertex2f(RenderMainMenu.buttonStartRightEnd, RenderMainMenu.buttonLowerEnd);
+			glVertex2f(buttonStart.getRightCoordinate(), buttonStart.getBottomCoordinate());
 			glTexCoord2f(1f, 0f);
-			glVertex2f(RenderMainMenu.buttonStartRightEnd, RenderMainMenu.buttonUpperEnd);
+			glVertex2f(buttonStart.getRightCoordinate(), buttonStart.getTopCoordinate());
 		glEnd();
 		//Draw Exit button
-		image = ImageLoader.loadImage(Texture.TEXTURE_BUTTON_EXIT);
+		image = ImageLoader.loadImage(Texture.BUTTON_EXIT.getPath());
 		RenderMainMenu.buttonExitTexture = ImageLoader.loadTexture(image);
 		glBegin(GL_QUADS);
 			glTexCoord2f(0f, 0f);
-			glVertex2f(RenderMainMenu.buttonExitLeftEnd, RenderMainMenu.buttonUpperEnd);
+			glVertex2f(buttonExit.getLeftCoordinate(), buttonExit.getTopCoordinate());
 			glTexCoord2f(0f, 1f);
-			glVertex2f(RenderMainMenu.buttonExitLeftEnd, RenderMainMenu.buttonLowerEnd);
+			glVertex2f(buttonExit.getLeftCoordinate(), buttonExit.getBottomCoordinate());
 			glTexCoord2f(1f, 1f);
-			glVertex2f(RenderMainMenu.buttonExitRightEnd, RenderMainMenu.buttonLowerEnd);
+			glVertex2f(buttonExit.getRightCoordinate(), buttonExit.getBottomCoordinate());
 			glTexCoord2f(1f, 0f);
-			glVertex2f(RenderMainMenu.buttonExitRightEnd, RenderMainMenu.buttonUpperEnd);
+			glVertex2f(buttonExit.getRightCoordinate(), buttonExit.getTopCoordinate());
 		glEnd();
 	}
 	
@@ -99,17 +109,17 @@ public class RenderMainMenu {
 		 	if ( button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE ) {
 		 		//Check click inside both buttons' Y axis
 		 		if(RenderMainMenu.mouseY >= RenderMainMenu.buttonUpperEnd
-		 				&& RenderMainMenu.mouseY <= RenderMainMenu.buttonLowerEnd) {
+		 				&& RenderMainMenu.mouseY <= buttonStart.getBottomCoordinate()) {
 			 		//Check click inside Start button
 			 		if(RenderMainMenu.mouseX >= RenderMainMenu.buttonStartLeftEnd
-			 				&& RenderMainMenu.mouseX <= RenderMainMenu.buttonStartRightEnd) {
+			 				&& RenderMainMenu.mouseX <= buttonStart.getRightCoordinate()) {
 			 			WindowSettings.setScreenMode(WindowSettings.SCREENMODE_INSTRUCTIONS);
 			 			glfwFreeCallbacks(gameWindow);
 			 			RenderMainMenu.isMouseCallbackSet = false;
 			 		}
 			 		//Check click inside Exit button
 			 		else if(RenderMainMenu.mouseX >= RenderMainMenu.buttonExitLeftEnd
-			 				&& RenderMainMenu.mouseX <= RenderMainMenu.buttonExitRightEnd)
+			 				&& RenderMainMenu.mouseX <= buttonExit.getRightCoordinate())
 			 			glfwSetWindowShouldClose(window, true);
 		 		}
 		 	}

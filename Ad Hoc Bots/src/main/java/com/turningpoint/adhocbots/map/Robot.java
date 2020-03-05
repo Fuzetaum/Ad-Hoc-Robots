@@ -43,10 +43,10 @@ public class Robot {
 		//If the step brings the robot slightly beyond command, place it at command location
 		//	and set command as null
 		this.x += commandVectorXNormalized * Robot.ROBOT_SPEED;
-		if((this.x >= (this.commandX-0.1f))&&(this.x <= (this.commandX+0.1f)))
+		if((this.x >= (this.commandX - 0.1f)) && (this.x <= (this.commandX + 0.1f)))
 			this.commandX = this.x;
 		this.y += commandVectorYNormalized * Robot.ROBOT_SPEED;
-		if((this.y >= (this.commandY-0.1f))&&(this.y <= (this.commandY+0.1f)))
+		if((this.y >= (this.commandY - 0.1f)) && (this.y <= (this.commandY + 0.1f)))
 			this.commandY = this.y;
 		//System.out.println("Robot walked to ("+this.x+","+this.y+")");
 	}
@@ -59,7 +59,7 @@ public class Robot {
 		}
 		//If the resource is of same type and robot still has capacity
 		else if((this.resourceCarriedAmount < Robot.ROBOT_CARRY_CAPACITY) &&
-				(this.resourceCarriedType == resourceType))
+				(this.resourceCarriedType.equals(resourceType)))
 			this.resourceCarriedAmount++;
 	}
 }

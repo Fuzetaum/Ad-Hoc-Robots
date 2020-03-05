@@ -46,9 +46,9 @@ public class RenderGameUI {
 		glOrtho(0, WindowConfigurations.getWindowWidth(), WindowConfigurations.getWindowHeight(), 0, 1, -1);
 		BufferedImage image;
 		//Choose the proper frame to draw
-		if(RenderGameUI.isBuildingSelected) image = ImageLoader.loadImage(Texture.TEXTURE_FRAME_BUILDING);
-		else if(RenderGameUI.isRobotSelected) image = ImageLoader.loadImage(Texture.TEXTURE_FRAME_ROBOT);
-		else image = ImageLoader.loadImage(Texture.TEXTURE_FRAME);
+		if(RenderGameUI.isBuildingSelected) image = ImageLoader.loadImage(Texture.FRAME_BUILDING.getPath());
+		else if(RenderGameUI.isRobotSelected) image = ImageLoader.loadImage(Texture.FRAME_ROBOT.getPath());
+		else image = ImageLoader.loadImage(Texture.FRAME.getPath());
 		RenderGameUI.frameTexture = ImageLoader.loadTexture(image);
 		glColor4f(1f, 1f, 1f, 1f);
 		glBegin(GL_QUADS);
@@ -62,7 +62,7 @@ public class RenderGameUI {
 			glVertex2f(WindowConfigurations.getWindowWidthAsFloat(), 0f);
 		glEnd();
 		//Draw the resource stockpile frame
-		image = ImageLoader.loadImage(Texture.TEXTURE_FRAME_RESOURCES);
+		image = ImageLoader.loadImage(Texture.FRAME_RESOURCES.getPath());
 		RenderGameUI.resourceTexture = ImageLoader.loadTexture(image);
 		glBegin(GL_QUADS);
 			glTexCoord2f(0f, 0f);
@@ -76,7 +76,7 @@ public class RenderGameUI {
 		glEnd();
 		//Draw the resources amount
 		try {
-			if(RenderGameUI.textDrawer == null) RenderGameUI.textDrawer = new Font(Texture.PATH_FONT, 24);
+			if(RenderGameUI.textDrawer == null) RenderGameUI.textDrawer = new Font(24);
 			String moneyAmount = UserController.getMoney().toString();
 			RenderGameUI.textDrawer.drawText(moneyAmount, 860, 19);
 			String steelAmount = UserController.getSteel().toString();
@@ -100,22 +100,22 @@ public class RenderGameUI {
 		switch(building.getBuildingType()) {
 		//BUILDING_RESOURCE_COMMAND_CENTER
 		case 0:
-			image = ImageLoader.loadImage(Texture.TEXTURE_COMMAND_CENTER);
+			image = ImageLoader.loadImage(Texture.COMMAND_CENTER.getPath());
 			break;
 		//BUILDING_RESOURCE_MONEY
 		case 1:
-			image = ImageLoader.loadImage(Texture.TEXTURE_MONEY_SERVER);
+			image = ImageLoader.loadImage(Texture.MONEY_SERVER.getPath());
 			break;
 		//BUILDING_RESOURCE_STEEL
 		case 2:
-			image = ImageLoader.loadImage(Texture.TEXTURE_WRECKED_BUILDING);
+			image = ImageLoader.loadImage(Texture.WRECKED_BUILDING.getPath());
 			break;
 		//BUILDING_RESOURCE_ELECTRONICS
 		case 3:
-			image = ImageLoader.loadImage(Texture.TEXTURE_HARDWARE_FACTORY);
+			image = ImageLoader.loadImage(Texture.HARDWARE_FACTORY.getPath());
 			break;
 		default:
-			image = ImageLoader.loadImage(Texture.TEXTURE_COMMAND_CENTER);
+			image = ImageLoader.loadImage(Texture.COMMAND_CENTER.getPath());
 			break;
 		}
 		RenderGameUI.frameTexture = ImageLoader.loadTexture(image);

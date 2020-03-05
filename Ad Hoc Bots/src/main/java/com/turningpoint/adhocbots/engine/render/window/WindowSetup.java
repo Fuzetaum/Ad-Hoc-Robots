@@ -58,6 +58,9 @@ public class WindowSetup {
         glfwSwapInterval(WindowConfigurations.getVsync() ? 1 : 0);
         // Make the window visible
         glfwShowWindow(window);
+        GL.createCapabilities();
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glEnable(GL_BLEND);
         return window;
     }
 }

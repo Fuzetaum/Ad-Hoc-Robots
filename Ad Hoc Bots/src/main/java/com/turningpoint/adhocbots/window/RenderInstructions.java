@@ -78,16 +78,16 @@ public class RenderInstructions {
 		//Check which instruction page should be printed
 		switch(RenderInstructions.instructionPage) {
 		case 1:
-			image = ImageLoader.loadImage(Texture.TEXTURE_WALLPAPER_INSTRUCTION_1);
+			image = ImageLoader.loadImage(Texture.WALLPAPER_INSTRUCTION_1.getPath());
 			break;
 		case 2:
-			image = ImageLoader.loadImage(Texture.TEXTURE_WALLPAPER_INSTRUCTION_2);
+			image = ImageLoader.loadImage(Texture.WALLPAPER_INSTRUCTION_2.getPath());
 			break;
 		case 3:
-			image = ImageLoader.loadImage(Texture.TEXTURE_WALLPAPER_INSTRUCTION_3);
+			image = ImageLoader.loadImage(Texture.WALLPAPER_INSTRUCTION_3.getPath());
 			break;
 		default:
-			image = ImageLoader.loadImage(Texture.TEXTURE_WALLPAPER_INSTRUCTION_1);
+			image = ImageLoader.loadImage(Texture.WALLPAPER_INSTRUCTION_1.getPath());
 		}
 		RenderInstructions.wallpaperTexture = ImageLoader.loadTexture(image);
 		glColor4f(1f, 1f, 1f, 1f);
@@ -109,7 +109,7 @@ public class RenderInstructions {
 		glLoadIdentity(); // Resets any previous projection matrices
 		//redefines the (1,1) OpenGL native scale to (width,height)
 		glOrtho(0, WindowConfigurations.getWindowWidth(), WindowConfigurations.getWindowHeight(), 0, 1, -1);
-		BufferedImage image = ImageLoader.loadImage(Texture.TEXTURE_BUTTON_PREVIOUS);
+		BufferedImage image = ImageLoader.loadImage(Texture.BUTTON_PREVIOUS.getPath());
 		RenderInstructions.buttonPreviousTexture = ImageLoader.loadTexture(image);
 		glColor4f(1f, 1f, 1f, 1f);
 		//Draw Previous button
@@ -124,7 +124,7 @@ public class RenderInstructions {
 			glVertex2f(RenderInstructions.buttonPreviousRightEnd, RenderInstructions.buttonUpperEnd);
 		glEnd();
 		//Draw Exit button
-		image = ImageLoader.loadImage(Texture.TEXTURE_BUTTON_EXIT);
+		image = ImageLoader.loadImage(Texture.BUTTON_EXIT.getPath());
 		RenderInstructions.buttonExitTexture = ImageLoader.loadTexture(image);
 		glBegin(GL_QUADS);
 			glTexCoord2f(0f, 0f);
@@ -137,7 +137,7 @@ public class RenderInstructions {
 			glVertex2f(RenderInstructions.buttonExitRightEnd, RenderInstructions.buttonUpperEnd);
 		glEnd();
 		//Draw Skip button
-		image = ImageLoader.loadImage(Texture.TEXTURE_BUTTON_SKIP);
+		image = ImageLoader.loadImage(Texture.BUTTON_SKIP.getPath());
 		RenderInstructions.buttonSkipTexture = ImageLoader.loadTexture(image);
 		glBegin(GL_QUADS);
 			glTexCoord2f(0f, 0f);
@@ -150,7 +150,7 @@ public class RenderInstructions {
 			glVertex2f(RenderInstructions.buttonSkipRightEnd, RenderInstructions.buttonUpperEnd);
 		glEnd();
 		//Draw Next button
-		image = ImageLoader.loadImage(Texture.TEXTURE_BUTTON_NEXT);
+		image = ImageLoader.loadImage(Texture.BUTTON_NEXT.getPath());
 		RenderInstructions.buttonNextTexture = ImageLoader.loadTexture(image);
 		glBegin(GL_QUADS);
 			glTexCoord2f(0f, 0f);
@@ -175,7 +175,7 @@ public class RenderInstructions {
 		switch(RenderInstructions.instructionPage) {
 		//On page 1, an example robot and Command Center must be printed
 		case 1:
-			image = ImageLoader.loadImage(Texture.TEXTURE_ROBOT);
+			image = ImageLoader.loadImage(Texture.ROBOT.getPath());
 			RenderInstructions.exampleRobotTexture = ImageLoader.loadTexture(image);
 			glColor4f(1f, 1f, 1f, 1f);
 			glBegin(GL_QUADS);
@@ -188,7 +188,7 @@ public class RenderInstructions {
 				glTexCoord2f(1f, 0f);
 				glVertex2f(RenderInstructions.entityRobotRightEnd, RenderInstructions.entityRobotUpperEnd);
 			glEnd();
-			image = ImageLoader.loadImage(Texture.TEXTURE_COMMAND_CENTER);
+			image = ImageLoader.loadImage(Texture.COMMAND_CENTER.getPath());
 			RenderInstructions.exampleCommCenterTexture = ImageLoader.loadTexture(image);
 			glColor4f(1f, 1f, 1f, 1f);
 			glBegin(GL_QUADS);
@@ -204,7 +204,7 @@ public class RenderInstructions {
 			break;
 		case 2:
 			//On page 2, an example Money Server must be printed
-			image = ImageLoader.loadImage(Texture.TEXTURE_MONEY_SERVER);
+			image = ImageLoader.loadImage(Texture.MONEY_SERVER.getPath());
 			RenderInstructions.exampleMoneyServerTexture = ImageLoader.loadTexture(image);
 			glColor4f(1f, 1f, 1f, 1f);
 			glBegin(GL_QUADS);
@@ -220,7 +220,7 @@ public class RenderInstructions {
 			break;
 		case 3:
 			//On page 3, an example Wrecked Building and Hardware Factory must be printed
-			image = ImageLoader.loadImage(Texture.TEXTURE_WRECKED_BUILDING);
+			image = ImageLoader.loadImage(Texture.WRECKED_BUILDING.getPath());
 			RenderInstructions.exampleMoneyServerTexture = ImageLoader.loadTexture(image);
 			glColor4f(1f, 1f, 1f, 1f);
 			glBegin(GL_QUADS);
@@ -233,7 +233,7 @@ public class RenderInstructions {
 				glTexCoord2f(1f, 0f);
 				glVertex2f(RenderInstructions.entityWreckedBuildingRightEnd, RenderInstructions.entityWreckedBuildingUpperEnd);
 			glEnd();
-			image = ImageLoader.loadImage(Texture.TEXTURE_HARDWARE_FACTORY);
+			image = ImageLoader.loadImage(Texture.HARDWARE_FACTORY.getPath());
 			RenderInstructions.exampleMoneyServerTexture = ImageLoader.loadTexture(image);
 			glColor4f(1f, 1f, 1f, 1f);
 			glBegin(GL_QUADS);
@@ -248,7 +248,7 @@ public class RenderInstructions {
 			glEnd();
 			break;
 		default:
-			image = ImageLoader.loadImage(Texture.TEXTURE_ROBOT);
+			image = ImageLoader.loadImage(Texture.ROBOT.getPath());
 			RenderInstructions.exampleRobotTexture = ImageLoader.loadTexture(image);
 			glColor4f(1f, 1f, 1f, 1f);
 			glBegin(GL_QUADS);
@@ -261,7 +261,7 @@ public class RenderInstructions {
 				glTexCoord2f(1f, 0f);
 				glVertex2f(RenderInstructions.entityRobotRightEnd, RenderInstructions.entityRobotUpperEnd);
 			glEnd();
-			image = ImageLoader.loadImage(Texture.TEXTURE_COMMAND_CENTER);
+			image = ImageLoader.loadImage(Texture.COMMAND_CENTER.getPath());
 			RenderInstructions.exampleRobotTexture = ImageLoader.loadTexture(image);
 			glColor4f(1f, 1f, 1f, 1f);
 			glBegin(GL_QUADS);
